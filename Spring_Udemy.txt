@@ -1,0 +1,240 @@
+Web Service:
+
+A service delivered over the web.
+
+
+W3C Definition:
+Software system designed to support interoperable machine-to-mcahine interaction over a network.
+
+Designed for machine-to-machine(or application-to-application) interaction.
+Should be interoperable - Not platform dependent
+Should allow communication over a network
+
+How ?
+How does data exchange between application take place?
+	    Request
+Application A ----> WebService
+	      <---Response
+
+XML(EXtensible Markup Language)
+
+JSON: JavaScriptObjectNotation
+
+How does application-A knows the form of Request and Response:
+
+Service Definition:
+	a)Request and Response Format
+	b)Request Structure
+	c)Response Structure
+	d)Endpoint
+
+Web Services Key Terminologies:
+-> Request and Response
+-> Message Exchange Format
+	*XML and JSON
+-> Service Provider
+-> Service Consumer
+-> Service Definition
+-> Transport 
+	* HTTP(Hyper Text Transfer Protocol) and MQ
+
+Intoduction to SOAP Web Services:
+
+SOAP(Simple Object Access Protocol/No longer an abbreviation):
+
+SOAP-ENV: Envelope
+SOAP-ENV: Header(Optional)
+SOAP-ENV: Body
+
+
+Format:
+    * SOAP XML Request
+    * SOAP XML Response
+Transport:
+    * SOAP over MQ
+    * SOAP over HTTP
+Service Definition:
+	WSDL(Web Service Definition Language)
+WSDL:
+
+	* Endpoint
+	* All Operations
+	* Request Structure
+	* Response Struture
+
+REST(REpresentationalStateTransfer):
+
+How are our requests handled?
+
+DispatcherServlet - FrontControllerPattern
+	* Mapping servlets: dispatcherServlet urls=[/]
+	* Auto Configuration(DispatcherServletAutoConfiguration)
+How does HelloWorldBean object get converted to JSON?
+	* @ResponseBody + JacksonHttpMessageConverters
+	* Auto Configuration(JacksonHttpMessageConvertersConfiguration)
+Who is configuring error mapping
+  AutoConfiguration(Error MVC AutoConfiguration Class)
+
+How are all jars available(Spring,Spring MVC,Jackson,Tomcat)
+
+Starter Projects - Spring Boot Starter Web(Spring-webmvc, spring-web,spring-boot-starter-tomcat,spring-boot-starter-json).
+
+Response Status for REST API:
+
+Resource is not found => 404
+Server exception => 500
+Validation error => 400
+
+200- Success
+201-Created
+204- No Content
+401- Unauthorized(When authorization fails)
+400- Bad Request
+
+Advanced REST API Features:
+-> Documentation
+-> Content Negotiation
+-> Internationalization - i18n
+->Versioning
+-> Hateoas
+-> Static Filtering
+
+
+Documentation:
+
+1) Swagger and Open Api
+
+2011: Swagger specification and swagger tools were introduced.
+
+2016: Open API specification created based on swagger spe.
+	*Swagger Tools(Eg: Swagger UI) continue to exist.
+OpenAPI Specification: Standard language -agnostic interface.
+	* Discover and understand REST API.
+	* Earlier called swagger specification.
+
+
+Swagger UI: Visualize and interact with your REST API.
+
+localhost:8080/swagger-ui/index.html
+
+2) Content Negotiation:
+
+Accept-Header
+
+Accept-Language
+
+
+<dependency>
+<groupId>com.fasterxml.jackson.dataformat</groupId>
+<artifactId>jackson-dataformat-xml</artifactId>
+</dependency>
+
+
+Internationalization(I18n):
+
+Typically HTTP Request Header - Accept - Language is used
+
+Accept-Language - Indicates natural language and locale that the consumer prefers
+
+Example: en - English
+	 nl - Dutch
+	 fr- French(Bonjour)
+
+
+Versioning REST API:
+
+You have built an amazing REST API
+	* You have 100s of consumers
+	* You need to implement a breaking change 
+		Example: Split Name into firstName amd lastName
+Solution: Versioning REST API
+	Variety of options:
+		*URL -> Twitter
+		*Request Parameter -> Amazon
+		*MediaType -> Github
+		*headers versioninig -> Microsoft
+
+
+
+Factors to consider:
+	-> URI Pollution
+	-> Misuse of HTTP headers
+	-> Caching
+	-> Can we execute the request on the browswer
+	-> API Documentation
+	Summary: No Perfect Solution.
+
+
+
+
+HATEOS(Hypermedia as the Engine of Application State):
+
+Customizing REST API Responses:
+
+Serialization: Convert object to stream(example: JSON)
+	Most popular JSON serialization in Java : Jackson.
+
+Customizing the REST API response returned by Jackson framework?
+
+1) Customize field names in response
+   @JSONProperty
+
+2) Return only selected fields
+   *Filtering
+	Example: Filter Out Passwords
+   *Two types:
+	Static Filtering: Same filtering for a bean across different REST API
+		@JsonIgnoreProperties, @JsonIgnore
+	Dynamic Filtering: Customize  filtering for a bean for specific REST API
+		@JSONFilter with FilterProvider
+
+Spring Boot Actuator: 
+
+Provides Spring Boot's production-ready features.
+
+* Monitor and manage your application in your production.
+
+Spring Boot Starter Actuator:
+ Starter to add Spring Boot Actuator to yor application
+
+* Spring-boot-starter actuator
+
+Provides a number of endpoints:
+
+beans - Complete list of Spring bean in your app.
+health - Application health information
+metrics- Application metrics
+mappings- Details around Request Mappings.
+
+and a lot more.....
+
+Explore REST API using HAL Explorer
+
+1) HAL (JSON Hypertext Application Language):
+
+Simple format
+
+
+Spring Security:
+
+Filter Chains
+
+1) All  requests should be authenticated
+2)If a request is not authenticated, a webpage is shown.
+3)CSRF -> POST,PUT
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+

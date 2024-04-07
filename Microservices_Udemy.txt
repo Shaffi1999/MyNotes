@@ -1,0 +1,120 @@
+ Microservices is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanism, built around business capabilities and independently deployable by fully automated deployment machinery.
+
+
+Microservices with Spring Cloud:
+
+Small autonomous services that work together.
+
+* REST
+* Small well chosen deployable units
+* Cloud Enabled
+
+Challenges with Microservices:
+
+1) Bounded Context
+2) Configuration Management
+3) Dynamic Scale Up And Scale Down
+4) Visibility
+5) Pack Of Cards
+
+Introduction to Spring Cloud:
+
+Configuration Management: 
+
+-> Spring Cloud Config Server backed up by git 
+
+
+Dynamic Scale Up and Scale Down:
+
+* Naming Server(Eureka) - Service Registeration, Service Discovery
+* Ribbon(Client Side Load Balancing)
+* Feign(Easier REST Clients)
+
+
+Ribbon Load Balancing
+
+Visibility and Monitoring:
+
+-> Zipkin Distributed Tracing.
+-> Netflix API Gateway.
+
+Fault Tolrance:
+
+Hystrix
+
+Advantages Of MicroServices:
+
+New Technology and Process Adaption
+
+Dynamic Scaling
+
+Faster Release Cycles
+
+Microservice Components:
+
+http://localhost:8000/currency-exchange/from/USD/to/INR
+
+
+URL
+http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+
+
+Response Structure
+{
+  "id": 10001,
+  "from": "USD",
+  "to": "INR",
+  "conversionMultiple": 65.00,
+  "quantity": 10,
+  "totalCalculatedAmount": 650.00,
+  "environment": "8000 instance-id"
+}
+
+
+
+Initial
+
+- http://localhost:8765/CURRENCY-EXCHANGE/currency-exchange/from/USD/to/INR
+
+- http://localhost:8765/CURRENCY-CONVERSION/currency-conversion/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/CURRENCY-CONVERSION/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+
+
+Lower Case
+
+- http://localhost:8765/currency-exchange/currency-exchange/from/USD/to/INR
+
+- http://localhost:8765/currency-conversion/currency-conversion/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/currency-conversion/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+
+
+Custom Routes
+
+- http://localhost:8765/currency-exchange/from/USD/to/INR
+
+- http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
+
+
+ 
+
+resilience4j.retry.instances.sample-api.maxAttempts=5 #NEW
+#resilience4j.retry.instances.sample-api.maxRetryAttempts=5 #OLD
+
+
+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
+
+
+
+
+
+
+

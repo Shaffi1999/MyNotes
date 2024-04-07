@@ -1,0 +1,292 @@
+03/04/2024
+
+Java 22
+
+Java 8 New Features:
+
+1) Lambda Expressions
+2) Functional Interfaces
+3) Default Methods in interfaces
+4) static methods inside interfaces
+5) Predicate
+6) Function
+7) Consumer
+8) Method Reference(::) & Constructor Reference by double column operator.
+9) Streams
+10) Date and Time API(joda.org) also known as Joda API.
+
+Objectives for releasing Java 8:
+
+1) To simplify programming.
+2) To utilize funtional programming benefits in java.
+3) To enable parallel programming in java.
+
+
+
+Lambda Expression:
+
+First language which used lambda expression -> LISP.
+
+Java used lambda last.
+
+Benefits of using Lambda Expressions:
+
+-> To enable functional programming in java.
+-> To write more readable,maintainable and concise code.
+-> To use API's very easily and effectively.
+-> To enable parallel processing.
+
+What is Lambda Expression:
+
+It is anonymous function(not having name, not having any modifiers,not having any return type).
+
+eg 1: public void m1(){		Lambda
+	sopln("Hello World");  -------->  ()->sopln("Hello World");
+}
+
+eg 2: public void add(int a,int b){  
+	sopln(a+b);                ---->  (a,b)->sopln(a+b);
+}
+
+
+eg 3:
+
+public int len(String s){
+	return s.length(); ---> (s)-> s.length();
+}
+-> Lambda expressions can take any number of parameters.
+
+-> If multiple parameters are there they should be seperated by , and enclosed in paranthesis.
+
+-> If the body of lambda expression contains one statement curly braces are optional.
+
+
+-> Type Inference -> Based on the context compiler can guess the type of parameters so we can ignore type of parameters.
+
+-> Based on context compiler also can guess return type so return type is also an optional we need not to write it explicitly.
+
+-> If the lambda expression is taking only one parameter the paranthesis are also optional.
+
+
+Functional Interface:
+
+If an interface contains only one abstract method then that interface is called as Functional Interface. 
+
+After Java8 we can also use the static and default methods inside a functional interface.
+
+Eg: Runnable(run()) , Callable(call()), ActionListener(GUI concepts actionPerformed()), Comparable(compareTo())
+
+
+Case:1 
+
+If an interface extends FI and child interface does not contain any abstract method then child interface is always FI.
+
+Eg: @FunctionalInterface
+    
+    interface P{
+	public void m1();
+}
+
+@FunctionalInterface
+interface C extends P{
+	
+}
+
+Case 2: 
+
+In the child interface , we can define exactly same parent interface abstract method then it is also a functional interface.
+
+Eg: @FunctionalInterface
+    
+    interface P{
+	public void m1();
+}
+
+@FunctionalInterface
+interface C extends P{
+	public void m1();
+}
+
+
+Case 3:
+
+In the child interface we can not define any new abstract methods otherwise we will get CE.
+
+ @FunctionalInterface
+    
+    interface P{
+	public void m1();
+}
+
+@FunctionalInterface
+interface C extends P{
+	public void m2();
+}
+
+
+Case 4:
+
+ @FunctionalInterface
+    
+    interface P{
+	public void m1();
+}
+
+interface C extends P{
+	public void m2();
+}
+
+
+
+04/04/2024:
+
+Method Reference and Constructor Reference(::) ->
+
+Alternative syntax for Lambda Expressions.
+
+Referer can be static or instance method
+
+Advantages:
+
+Code Reusability
+
+Condition:
+
+Referer method and Reference method must have same argument types.
+
+
+Syntax:
+
+static method:
+
+class name::method name;
+
+Test::m2;
+
+Instance Method:
+
+ObjectRef :: method name;
+
+eg: Test t=new Test();
+
+t::m2;
+
+Constructor:
+
+class name :: new;
+
+
+Using static method reference:
+
+package com.shaffi.collections;
+
+interface Interf {
+	public void m1();
+}
+
+public class Test {
+	public static void m2() {
+		System.out.println("Implementation By Method Reference");
+	}
+
+	public static void main(String[] args) {
+		Interf i = Test::m2;
+		i.m1();
+	}
+}
+
+Using instance method:
+
+Eg:
+
+package com.shaffi.collections;
+
+public class MethodReferenceExample {
+	
+	public void m1() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Child Thread");
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		MethodReferenceExample obj=new MethodReferenceExample();
+
+		Runnable r = obj::m1;
+
+		Thread t = new Thread(r);
+		t.start();
+
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Main Thread");
+		}
+
+	}
+
+}
+
+
+Using Constructor Reference:
+
+package com.shaffi.collections;
+
+interface Interf1 {
+	public Sample get();
+}
+
+public class Sample {
+
+	Sample() {
+		System.out.println("Sample Constructor  Execution and Object Creation");
+	}
+
+	public static void main(String[] args) {		
+		Interf1 i= Sample :: new;
+		Sample s1 = i.get();
+		System.out.println(s1);
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

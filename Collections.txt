@@ -1,0 +1,499 @@
+Difference between Collection VS Collections
+
+Collection(Interface): Collection is an interface which can be used to represent a group of individual objects as a single entity.
+
+Collections(Class): Utility calss  present in java.util.package to define several utility methods (like sorting, searching...) for Collection objects.
+
+9 Key Interfaces of Collection Framework:
+-> Collection(I):
+	* If we want to represent a group of individual objects as a single entity then we should go for Collection.
+	* Collection interface defines the most common methods which are applicable for any Collection object.
+	* In general collection interface is considered as root interface of Collection Framework.
+	**Note: There is no concrete class which implements collection interface directly.
+	
+-> List(I):
+	* List is a child interface of Collection.
+	* If we want to represent a group of individual objects as a single entity where duplicates are allowed and insertion order preserved then we should go for List.
+-> Set(I): 
+	* Set is a child interface of Collection.
+	* If we want to represenst a group of individual objects as a single entity where duplicates are not allowed and insertion order is not preserved we should go for  
+          Set.
+	
+	Collection(1.2 version)
+	    |
+	   Set(1.2 version)
+	    |
+	Hash Set(1.2 version)
+	    |
+	LinkedHashSet(1.4 version)
+
+   * Differences between List and Set:
+	In List duplicate values are allowed and in Set duplicates are not allowed.
+	Insertion order is preseved in List and in Set Insertion order is not preserved.
+
+->Sorted Set(I):
+	* It is the child interface of Set.
+	* If we want to represent a group of individual objects as a single entity where duplicates are not allowed but all the objects should be inserted according to         	  some sorting order then we should go for SortedSet.
+
+	Collection(1.2 version)
+	    |
+	   Set(1.2 version)
+	    |
+	Sorted Set(I)1.2v
+
+-> Navigable Set:
+	
+	* It is the child interface of SortedSet it defines several methods for navigation purposes.
+	
+	Collection(1.2 version)
+	    |
+	   Set(1.2 version)
+	    |
+	Sorted Set(I)1.2v
+	     |
+	Navigable Set(I)(1.6 v)
+	      |
+	Tree Set(1.2 v)
+
+-> Queue:
+	* It is child interface of Collection.
+	* If we want to represent a group of individual objects prior to processing then we should go for Queue.
+   Eg: Before sending a mail all mail Id's we have to store somewhere and in which order we saved in the same order mail's should be delivered(First In First Out) for this    	requirement Queue concept is best choice.
+
+	Collection(I)(1.2v)
+	     |
+	   Queue(I) 1.5 v
+	      |
+	Priority Queue 1.5v
+	      |
+	Blocking Queue 1.5 v
+	      |-> LinkedBlockingQueue 1.5 v
+	      |-> PriorityBlockingQueue 1.5v
+
+Note: All the above interfaces
+      (Collection,List,Set,SortedSet,NavigableSet and Queue) meant for representing a group of individual objects.
+
+      If we want to represent a group of objects as key value pairs then we should go for Map Interface.
+
+Map(I):
+
+* Map is not the child interface of Collection.
+* If we want to represent a group pf individual objects as key value pairs then should go for Map.
+
+Eg:  Roll No           Name
+	101		Durga
+	102		Pavan
+
+Both key and value are objects , duplicated keys are not allowed but values can be duplicated.
+
+Map(I)1.2v
+|->  HashMap 1.2v
+	|
+     LinkedHashMap	
+|->  WeakHashMap 1.2v
+|->  Identity HashMap 1.2v
+|->  Hashtable  1.2v(Parent Dictionary)
+	|
+     Properties
+
+
+SortedMap:(I)
+
+* It is the child interface of map.
+* If we want to represent a group of key value pairs according to some sorting order of keys then we should go for SortedMap.
+Map 1.2v
+|
+SortedMap 1.2v
+
+Navigable Map: (I) 1.6 v
+
+* Child interface of SortedMap. 
+* It defines several utility methods for navigation purpose.
+* It's implementation class is TreeMap.  1.2v
+
+___________________________________________________________________________________________________________________________________________________________________________
+
+ 
+
+
+
+		
+	
+
+	
+
+
+List is an interface in Collections framework.
+
+ArrayList and Vectors internally implements Arrays.
+
+New Array is incremented by 100% then it is a vector.
+
+New Array is incremented by 50% then it is a ArrayList.
+
+Elements will right shift.
+
+Size= No of elements present in List.
+Capacity= Array Capacity->10
+Vector java 1.0
+collections 1.2
+Generics 1.5
+
+
+Vector:
+
+1) What is the default capacity?(Capacity when elements are not added to the list)
+Ans: 0 and the capacity is increase by 100%.
+2)What is the initial capacity?
+Ans: 10
+3)Does it allow null values?
+Ans: Yes 
+4) Does it allow duplicates?
+Ans: Yes
+5) Does it maintain the insertion order?
+Ans: Yes
+6)Does it maintain the sorted order?
+Ans: No
+7)Does it offer the random access of elements?
+Ans: Yes
+8)Is it synchronized?
+Ans: Yes
+9)What is it good at?
+Ans: It is a dynamic array.
+If there is multi threading concept
+Data is increasing exponentially
+Suitable in above scenarios.
+
+Legacy Class
+
+
+ArrayList:
+
+1) What is the default capacity?
+Ans: 0 and the capacity is increase by 50%.
+2)What is the initial capacity?
+Ans: 10
+3)Does it allow null values?
+Ans: Yes 
+4) Does it allow duplicates?
+Ans: Yes
+5) Does it maintain the insertion order?
+Ans: Yes
+6)Does it maintain the sorted order?
+Ans: No
+7)Does it offer the random access of elements?
+Ans: Yes
+8)Is it synchronized?
+Ans: No. Using collections class we can make it synchronized.
+9)What is it good at?
+Ans: It is a dynamic array.
+
+3 Constructors are there
+
+
+
+Stack:
+
+-> Stack extends Vector.
+-> All the opearation that are present in Vector are present in Stack.
+-> Default size is 10 and 100% incrementation will be there.
+-> Imagine vertically.
+-> Stcak is a class in Java which implements List interface and extends the vector class and also represents the LIFO principle.
+
+
+1) What is the default capacity?
+Ans: 10 and the capacity is increase by 100%.
+2)What is the initial capacity?
+Ans: 10
+3)Does it allow null values?
+Ans: Yes 
+4) Does it allow duplicates?
+Ans: Yes
+5) Does it maintain the insertion order?
+Ans: Yes
+6)Does it maintain the sorted order?
+Ans: No
+7)Does it offer the random access of elements?
+Ans: Yes
+8)Is it synchronized?
+Ans: Yes
+9)What is it good at?
+Ans: Last In First Out
+
+
+Linked List:
+-> LinkedList internally implements Doubly Linked List.
+-> Elements are not stored in consecutive memory locations.
+-> Retrieval opearations takes more time.
+-> Insertion order is preserved.
+-> Duplicates are allowed.
+-> Heterogeneous elements are allowed.
+-> Null insertion is allowed.
+-> Every collection implements serializable,clonable but random access interface.
+-> If our frequent option is insertion in the middle then it is a best choice.
+->Methods:Usually we can use LinkdList to implement stacks and queues to provide support for this requirement LinkedList class defines following methods:
+
+* void addFirst(Object o)
+* void addLast(Object o)
+* Object getFirst()
+* Object getLast(
+* Object removeFirst()
+* Object removeLast()
+
+Constructors:
+
+LinkedList l1=new LinkedList();
+LinkedList l2=new LinkedList(Collection c);
+Creates an equivalent LinkedList Object for the given collection.
+
+
+Difference between ArrayList and LinkedList:
+
+ArrayList:
+1) Best for retrieval opeartions.
+2)Worst choice for insertion and deletion in the middle.
+3)Underlying datastructure is resizable or growable array
+4)Random Access is allowed
+
+
+
+
+
+
+
+LinkedList:
+1)Best choice for insertion or deletion in the middle.
+2)Worst choice for retrieval
+3) Double LL
+4)Random Access is not allowed
+
+
+
+Three Cursors of Java:
+If we want to retrieve Objects one by one from the Collection, then we should go for Cursors.
+
+There are three types of cursors are available in java:
+1) Enumeration
+2) Iterator
+3) ListIterator
+
+Enumeration:
+* Introduced in 1.0 version(for Legacy).
+
+* We can use enumeration to get Objects one by one from the old Collection Objects(Legacy Collections).
+* We can create enumeration Object by using elements() method of Vector class.
+
+public Enumeration elements();
+
+
+Syntax:
+Enumeration e= v.elements();
+
+v=vector object
+
+Enumeration defines the following two methods:
+
+1)public boolean hasMoreElements();
+2)public Object nextElement();
+
+
+Limitations Of Enumeration:
+
+* Enumeration concept is applicable only for legacy classes and hence it is not a universal cursor.
+* By using Enumeration we can get only read access and we can not perform remove operation.
+
+Note: To overcome above limitations of Enumeration we should go for Iterator.
+
+2)Iterator:
+
+-> We can apply Iterator concept for any Collection object hence it is universal cursor.
+
+->  By using Iterator we can perform both read and remove options.
+
+
+We can create Iterator object by using iterator() method of Collection interface.
+
+public Iterator iterator();
+
+Eg:
+Iterator itr=C.iterator();
+
+Where C is any Collection object.
+
+Methods in Iterator:
+
+Iterator interface defines the following three methods:
+
+1) public boolean hasNext()
+2) public Object next()
+3) public void remove()
+
+Limitation of Iterator:
+1) By using enumeration and iteration we can move only towards orward direction and we can not move to the backward direction, and hence these are single direction cursors.
+
+2) By using Iterator we can perform only read and remove operations and we can not perform replacement of new Objects.
+
+Note: To overcome above limitations of Iterator we should go for ListIterator.
+
+
+*****List Iterator(I):
+
+1) List Iterator is a bidirectional cursor.
+2) By using ListIterator we can add, remove and replace elements.
+
+Syntax: public ListIterator listIterator();  ---->List
+
+ListIterator ltr=l.listIterator();
+
+l= any list object.
+
+ListIterator is child interface of Iterator.
+
+Methods:
+
+1) public boolean hasNext() 
+2) public Object next()
+3) public int nextIndex()
+
+4) public boolean hasPrevious()
+5) public Object previous
+6) public int previousIndex()
+
+7) public void remove()
+8) public void set(newObject)
+9) public void add(Object new)
+
+It is applicable for List Objects.
+
+
+__________________________________________________________________________________________________________________________________________________________________________
+
+Set:
+
+Agenda:
+What is Set?
+Hierarchy of Set Interface in Java?
+Major Operations performed on Set Object?
+Important points to remember?
+
+Certainly! In Java, a Set is a collection that does not allow duplicate elements. It models the mathematical concept of a set and provides methods for adding, removing, and querying elements. Here are some key points about sets in Java:
+
+No Duplicates: A Set cannot contain duplicate elements. If you attempt to add an element that already exists in the set, the addition operation will have no effect.
+
+Unordered: Unlike lists, sets do not guarantee any particular order of elements. The iteration order of elements in a set may change over time, and it's not based on the order in which elements were added.
+
+Null Elements: Most implementations of Set do not allow null elements. If you try to add null to such a set, it will either throw a NullPointerException or silently ignore the null value.
+
+Performance Characteristics: The performance of set operations (addition, removal, containment checks) depends on the specific implementation of the Set interface. Some implementations may offer better performance for certain operations than others.
+
+Now let's discuss some common implementing classes of the Set interface in Java along with examples and differences between them:
+
+HashSet:
+
+Implemented by: java.util.HashSet.
+
+Characteristics: Uses a hash table to store elements, which provides constant-time performance for basic operations (add, remove, contains) on average.
+
+Example:
+
+java
+Copy code
+Set<String> hashSet = new HashSet<>();
+hashSet.add("apple");
+hashSet.add("banana");
+hashSet.add("apple"); // Duplicate, will not be added
+System.out.println(hashSet); // Output: [banana, apple]
+TreeSet:
+
+Implemented by: java.util.TreeSet.
+
+Characteristics: Uses a red-black tree to store elements, which maintains elements in sorted order (according to their natural ordering or a custom comparator). Offers guaranteed log(n) time for basic operations.
+
+Example:
+
+java
+Copy code
+Set<String> treeSet = new TreeSet<>();
+treeSet.add("banana");
+treeSet.add("apple");
+treeSet.add("apple"); // Duplicate, will not be added
+System.out.println(treeSet); // Output: [apple, banana]
+LinkedHashSet:
+
+Implemented by: java.util.LinkedHashSet.
+
+Characteristics: Maintains a doubly-linked list of elements in addition to a hash table, preserving the insertion order of elements. Offers better performance for iteration than HashSet.
+
+Example:
+
+java
+Copy code
+Set<String> linkedHashSet = new LinkedHashSet<>();
+linkedHashSet.add("banana");
+linkedHashSet.add("apple");
+linkedHashSet.add("apple"); // Duplicate, will not be added
+System.out.println(linkedHashSet); // Output: [banana, apple]
+EnumSet:
+
+Implemented by: java.util.EnumSet.
+
+Characteristics: Specifically designed to work with enum types. Internally implemented using bit vectors, offering very efficient memory usage and constant-time performance for most operations.
+
+Example:
+
+java
+Copy code
+enum Fruit { APPLE, BANANA, ORANGE }
+
+Set<Fruit> enumSet = EnumSet.of(Fruit.APPLE, Fruit.ORANGE);
+System.out.println(enumSet); // Output: [APPLE, ORANGE]
+CopyOnWriteArraySet:
+
+Implemented by: java.util.concurrent.CopyOnWriteArraySet.
+
+Characteristics: A thread-safe set implementation that uses a copy-on-write strategy. Iteration is performed on a snapshot copy of the underlying array, ensuring that concurrent modifications do not interfere with ongoing iteration.
+
+Example:
+
+java
+Copy code
+Set<String> copyOnWriteArraySet = new CopyOnWriteArraySet<>();
+copyOnWriteArraySet.add("banana");
+copyOnWriteArraySet.add("apple");
+copyOnWriteArraySet.add("apple"); // Duplicate, will not be added
+System.out.println(copyOnWriteArraySet); // Output: [banana, apple]
+These are some common implementing classes of the Set interface in Java, each with its own characteristics and use cases. When choosing a Set implementation, consider factors such as performance requirements, thread safety, and iteration order.
+
+
+
+
+
+
+
+
+
+
+
+Map:
+
+What is Map?
+A map is an interface which is used to store data in the form of key,value pair.
+Hierarchy of Map Interface in Java
+
+Major operations performed on Map object.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,637 @@
+Angular is popular for Single Page Applications.(SPA)
+TypeScript is a super set of JavaScript.
+Angular is a Java Script Framework.
+Developed by Google.
+It is written in Typescript(statically typed language).
+Angular JS(First Release Name) VS Angular.
+
+Angular 17
+
+Angular CLI: 17.3.1
+Node: 20.11.1
+Package Manager: npm 10.2.4
+OS: win32 x64
+
+
+RequiredTools/Softwares:
+-> Node JS.
+-> Angular CLI.
+-> Editor VS Code.
+
+Road Map for Angular:
+* Project Structure.
+* Components.
+* Data Binding.
+* Component Communication.
+* Directives.
+* Routing.
+* Forms(Reactive Forms and Template Driven Forms)
+* Pipes(Filters)
+* Services
+* HTTP
+
+Commands:
+node -v
+npm install -g @angular/cli
+ng --version
+
+
+
+-> Components
+-> Data binding/Templates
+-> Services
+-> Routing
+-> Forms
+-> DI
+-> Observables
+-> Testing
+
+
+Componet:
+1)CSS
+2)Java Script
+3)HTML
+4)Testing
+
+Types of data binding:
+1) One way data binding
+	-> String Interpolation
+	-> Attribute/Property Binding
+	-> Class Binding
+	-> Style Binding
+	-> Event Binding
+2)Two way data binding
+
+
+String Interpolation:
+
+Synchronization
+Type Script -> HTML
+Syntax: {{expression}}
+Don't use new keyword while using string interpolation and also type of.
+We can increment but we can not reassign.
+Always gives text
+
+Property Binding:
+
+-> It is one way data binding.
+-> Allows to bind data from typescript file(model) to html.
+-> Syntax: [property]
+
+Style Binding:
+
+It is one way binding
+
+Set inline styles of an element dynamic based on model/.tsfile
+model->HTML
+Syntax : [style]={property:var1}
+[style.property]=var1
+<h1 [style.color]="hasError?'red':'green'">Hello World</h1>
+
+
+Event Binding:
+
+* One way data binding'
+* Allows to bind data from html to model(type script file)
+	HTML -------> Model/.ts file
+* Syntax: (eventname)=somefun()
+	 on-eventname=somefun()
+
+Mouse Events        Keyboard Events         Focus events    Form Event
+		    
+1)Click		   1)Key down		    focus            submit
+2)double click	   2)Key Up	 	    blur             reset
+3)mouseover        3)Key Press    	    focusin          change
+4)mouseout				    focusout
+5)mousemove
+
+html:
+
+<button (click)="increment()">Increment</button>
+<button (click)="decrement()">decrement</button>
+
+<h1>Counter: {{counter}}</h1>
+
+Name: <input type="text" on-input="changeName($event)">
+
+<h1>Your Name: {{name}}</h1>
+
+
+
+CSS:
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title="Hello";
+  counter:number=0;
+  name="xyz"
+
+  increment(){
+    this.counter+=1;
+  }
+
+  decrement(){
+    this.counter-=1;
+  }
+
+  changeName(e:any){
+    this.name=e.target.value
+  }
+
+  }
+
+Two way Data Binding:
+
+* Allows to bind data from html to model(type script file) & type script to html
+
+Model/ .ts file ----->DOm/HTML
+		<----
+
+Syntax: [(ngmodel)]=propertyname(variable)
+
+Example:
+
+HTML:
+
+City :<input type="text"  [(ngModel)] = "city">
+
+<p>{{city}}</p>
+
+<button (click)="updateCity()">Update</button>
+
+
+Type Script:
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title="Hello";
+  city:string="Hyderabad"
+
+  updateCity(){
+    this.city="Banglore";
+  }
+
+  }
+
+
+Directives In Angular:
+
+Directives are custom HTML attributes which tell angular to change the structure, style or behavior of the DOM elements.
+
+
+Types:
+1) Structural Directives
+2) Attribute Directives
+3) Component Directives
+
+1)Structural Directives:
+
+Change the DOM layout by adding and removing DOM elements.
+
+-> NgIf:
+
+We can add/remove DOM Elements based on some condition
+
+*ngIf
+*ngIf with else statement
+*ngIf with then and else statement
+<h1 *ngIf="show">This is heading</h1>
+
+TS:
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title="Hello";
+  show=false;
+
+  }
+
+
+Example 2:
+
+<h1 *ngIf="!data;  then load; else sample"></h1>
+
+        <ng-template #sample>
+            This is NgTemplate
+        </ng-template>
+
+        <ng-template #load>
+           Loading...
+        </ng-template>
+<!-- Template Reference -->
+
+
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title="Hello";
+  data="He";
+  }
+
+
+
+
+-> NgFor
+We can modify DOM structure
+Loop over an array to show data in html template
+
+<div *ngFor="let ele of arr"></div>
+TS:
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title="Hello";
+  movies=['RRR','Bheemla Nayak','pushpa','Athadu'];
+  }
+
+
+HTML:
+<table border="1">
+    <tr *ngFor="let m of movies">
+        <td>{{m}}</td>
+    </tr>
+    </table>
+
+Variables: index, first,last,even,odd
+
+
+
+-> NgSwitch:
+
+We can show or hide DOM elements based on some condition
+
+-> *ngSwitch
+-> *ngSwitchCase
+-> *ngSwitchDefault
+
+<div [ngSwitch]="expression">
+	<div *ngSwitchCase="value1">....</div>
+	<div *ngSwitchCase="value2">....</div>
+        <div *ngSwitchCase="value3">....</div>
+        <div *ngSwitchDefault>....</div>
+</div>
+
+
+Eg:
+
+html:
+<input type="text" [(ngModel)]="operation">
+<div [ngSwitch]="operation">
+	<div *ngSwitchCase="'+'">{{num1}}+{{num2}}= {{num1+num2}}</div>
+	<div *ngSwitchCase="'-'">{{num1}}-{{num2}}= {{num1-num2}}</div>
+    <div *ngSwitchCase="'*'">{{num1}}*{{num2}}= {{num1*num2}}</div>
+    <div *ngSwitchCase="'/'">{{num1}}/{{num2}}= {{num1/num2}}</div>
+    <div *ngSwitchDefault>Invalid Operation</div>
+</div>
+
+.ts:
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title="Hello";
+ num1:number=4
+ num2:number=5;
+ operation:string='';
+
+  }
+
+
+
+
+
+
+
+Attribute Directives:
+
+Change the appearance or behaviour of an element,component or another directive.
+
+NgClass: adds or removes a set of CSS classes.
+NgStyle: adds and removes a set of HTML styles
+NgModel: adds two-way data binding to an HTMl form elements.
+
+Component Directives:
+
+
+Pipes:
+
+* Used to transform data before displaying it on in the browser.
+* Pipes takes data as input and format or transform that data to some form.
+* Expression | pipename[:parameters]
+
+Eg: 'angular' | Uppercase
+
+Op: ANGULAR
+
+Built in pipes:
+
+-> CurrencyPipe
+-> DatePipe
+-> DecimalPipe
+-> JsonPipe
+-> LowerCasePipe
+-> UpperCasePipe
+-> PercentPipe
+->  SlicePipe
+->  AsyncPipe
+
+Eg:
+
+<h1>{{salary | currency: 'INR'}}</h1>
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title="Hello";
+  salary=67000;
+
+  }
+
+<h1>{{person1 | json}}</h1>
+
+Custom Pipes In Angular:
+
+Syntax: ng g p pipe-name
+
+or
+
+ng generate pipe pipe-name
+
+.html
+
+<h1>{{person | test:wish1:wish2}}</h1>
+
+
+.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title="Hello";
+  wish1= "Good Morning Your Attendence is good"
+  wish2= "Good Morning Your Attendence is low"
+  person={"name":"Shaffi","Attendence":8}
+
+
+  }
+
+custom pipe
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'test'
+})
+export class TestPipe implements PipeTransform {
+
+  transform(p:any,wish1:string,wish2:string): string {
+    if(p.Attendence>=75){
+      return `Hello  ${p.name} ${wish1}`
+    }
+    else{
+      return `Hello  ${p.name} ${wish2}`
+    }
+  }
+
+
+}
+
+
+
+
+Routing in Angular:
+
+Routing is used to navigate from one component to another component in angular.
+
+1) Configuring the routes
+2) Adding Router Outlet.
+3) Add routing links in template.
+
+
+Template Reference:
+
+Using template reference variable we can identify or access the values of an element or component.
+'#' is used to declare template reference variable.
+
+Parent and Child Components:
+ 
+A component is said to be a parent component if we use the selector of a particular component in the template of that component.Eg: AppComponent.
+
+A component is said to be a child component if we use the selector of that component in another component. Eg: Any custom component
+
+
+Component Communication:
+
+Parent ---> Child
+@InputDecorator(Decorator)
+Template Reference Variable
+@ViewChild(Decorator)
+
+
+Child -> Parent
+@Output(Decorator)
+Template Reference Variable
+@ViewChild(Decorator)
+
+Event emitter
+Event binding
+
+View Child:
+
+
+
+
+
+
+
+Different Components -> Services
+
+
+
+Package.json:
+
+Contains name , version of the project. dependencies. It is like pom.xml.
+
+tsconfig:
+It will convert typescript to javascript.
+
+
+node_modules:
+
+Dependencies to run java project.
+
+Src:
+
+All development goes here.
+
+main.ts
+index.html
+app.module.ts:
+Root Module
+
+
+Angular Service:
+
+To share the data among various components in an Angular app.
+
+To make the Testing and Debugging simple.
+
+A component can delegate certain tasks to service, such as fetching data from the servcer, validating data from the server, validating user input, or logging directly to the server.
+
+To define a class as a service in Angular, use the @Injectable() decorator to provide the metadata that allows Angular to inject it into a component as a dependency.
+
+DOM Manipulation in Angular:
+
+Html:
+name :<input type="text" #test>
+
+
+.TS file:
+
+ @ViewChild("test") d:any;
+
+ngAfterViewInit(){
+  console.log(this.d)
+  this.d.nativeElement.onkeyup= ()=>{
+    console.log(this.d.nativeElement.value)
+  }
+  }
+
+@View Child:
+
+-> We can use this decorator to access the properties and methods of child component in parent component.
+
+-> Also we can use this decorator to access DOM elements of view.
+
+
+
+@ViewChild Vs @ViewChild:
+
+
+
+
+
+
+
+
+01/04
+
+Life Cycle Hooks:
+
+Methods:
+
+-> ngOnChanges() -> This method is executed when we pass input from parent to child and also if there is any change in input. Only triggered when we change the complete value.
+-> **ngOnInit(): This is executed when first a component is created.
+-> ngDoCheck(): Similar to ngOnChanges. It is checked when any kind of change is triggered.
+-> ngAfterViewInit(): When the component view is initialized this method is executed.
+-> ngAfterViewChecked(): When the view is changed this method is executed.
+-> ngAfterContentInit(): Content Projection
+-> ngAfterContentChecked(): Content Projection Chnaged
+-> **ngOnDestroy(): It is executed when we change to another component.
+
+It is in an interface.
+
+
+
+
+
+
+
+___________________________________________________________________________________
+
+1) Pure Pipe : Pipes are used to transform the data.
+
+
+Angular Interview Questions:
+
+1) What is Angular?
+Ans: 
+* Angular is a framework for building single-page client applications using HTML and TypeScript.
+
+* Angular managed by Google and it is having long term support.
+
+* Angular written in Typescript.
+
+2) What is Angular CLI?
+Ans:
+
+* The Angular CLI is a command-line interface tool.
+* Angular CLI used for initialize,develop,scaffold,and maintain Angular applications directly from a command shell.
+* Install angulkar CLI npm install @angular/cli
+
+3)Advantages of Angular:
+Ans:
+* Angular provides cross-platform Development.
+* Improve Speed and Performance.
+* Faster Development Process.
+* Readable and Testable Code.
+* More Lightweight Web Applications.
+* Open Source.
+
+4) What are Hooks?
+Ans:
+* Lifecycle hooks are a set of methods in Angular that are executed at specific moments during the lifecycle of a component.
+* These methods provide a way to tap into the Angular component.
+* Lifecycle and perform custom logic or operations at specific points in time.
+
+ngOnChanges: This happens frequently , so any operation you perform here impacts performance significantly.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
